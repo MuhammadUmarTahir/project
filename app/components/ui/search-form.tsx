@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from './button';
-import { Input } from './input';
-import { Label } from './label';
-import { MapPin } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { MapPin } from "lucide-react";
 
 interface SearchFormProps {
   onSearch: (city: string, state: string) => void;
@@ -12,8 +12,8 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
       </div>
       <Button type="submit" disabled={isLoading} className="w-full">
         <MapPin className="mr-2 h-4 w-4" />
-        {isLoading ? 'Searching...' : 'Search Neighborhoods'}
+        {isLoading ? "Searching..." : "Search Neighborhoods"}
       </Button>
     </form>
   );
