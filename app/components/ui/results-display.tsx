@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Neighborhood } from '@/app/types';
-import { Button } from './button';
-import { Download } from 'lucide-react';
+import { Neighborhood } from "@/app/types";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 interface ResultsDisplayProps {
   neighborhoods: Neighborhood[];
@@ -10,16 +10,22 @@ interface ResultsDisplayProps {
   state: string;
 }
 
-export function ResultsDisplay({ neighborhoods, city, state }: ResultsDisplayProps) {
+export function ResultsDisplay({
+  neighborhoods,
+  city,
+  state,
+}: ResultsDisplayProps) {
   const handleExport = () => {
     const csv = [
-      ['Neighborhood Name', 'Type', 'Latitude', 'Longitude'].join(','),
-      ...neighborhoods.map((n) => [n.name, n.type, n.coordinates[0], n.coordinates[1]].join(',')),
-    ].join('\n');
+      ["Neighborhood Name", "Type", "Latitude", "Longitude"].join(","),
+      ...neighborhoods.map((n) =>
+        [n.name, n.type, n.coordinates[0], n.coordinates[1]].join(",")
+      ),
+    ].join("\n");
 
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([csv], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `${city}-${state}-neighborhoods.csv`;
     document.body.appendChild(a);
@@ -47,7 +53,8 @@ export function ResultsDisplay({ neighborhoods, city, state }: ResultsDisplayPro
           >
             <h3 className="font-semibold">{neighborhood.name}</h3>
             <p className="text-sm text-muted-foreground">
-              {neighborhood.coordinates[0].toFixed(4)}, {neighborhood.coordinates[1].toFixed(4)}
+              {neighborhood.coordinates[0].toFixed(4)},{" "}
+              {neighborhood.coordinates[1].toFixed(4)}
             </p>
           </div>
         ))}
